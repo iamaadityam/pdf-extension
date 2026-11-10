@@ -1,0 +1,19 @@
+{
+  "name": "pdf-notes-extension",
+  "version": "1.0.0",
+  "description": "Capture, organize, and export passages from PDFs natively in Chrome & Brave.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:chrome": "tsc && vite build --config vite.config.chrome.ts",
+    "build:brave": "tsc && vite build --config vite.config.brave.ts",
+    "pack": "tsc && vite build --config vite.config.chrome.ts && powershell -NoProfile -Command \"Compress-Archive -Path dist/chrome/* -DestinationPath ../pdf-notes-chrome-extension.zip -Force\""
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.23",
+    "@types/chrome": "^0.0.270",
+    "typescript": "^5.2.2",
+    "vite": "^8.3.7"
+  }
+}

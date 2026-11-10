@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "PDF Notes",
+  "version": "1.0.0",
+  "description": "Capture, organize, and export passages from PDFs natively in Chrome & Brave.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "sidePanel",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Open PDF Notes Library",
+    "default_popup": "src/popup.html"
+  },
+  "options_page": "src/library/library.html",
+  "side_panel": {
+    "default_path": "src/sidepanel/sidepanel.html"
+  },
+  "minimum_chrome_version": "116"
+}

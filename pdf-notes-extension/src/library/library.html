@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Notes - Central Library</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .layout { display: flex; height: calc(100vh - 49px); }
+    .sidebar { width: 320px; border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
+    .content { flex: 1; padding: 20px; overflow-y: auto; }
+    .doc-item { padding: 12px; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .doc-item:hover, .doc-item.active { background: #f0f9ff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PDF Notes Library</h1>
+    <div>
+      <button id="btn-export-json" class="btn">Backup JSON</button>
+      <button id="btn-import-json" class="btn">Restore JSON</button>
+      <input type="file" id="file-import" accept=".json" style="display: none;">
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div style="padding: 12px; border-bottom: 1px solid var(--border);">
+        <input type="text" id="doc-search" placeholder="Filter documents...">
+      </div>
+      <div id="document-list"></div>
+    </div>
+
+    <div class="content">
+      <div id="main-view">
+        <div style="color: var(--muted); margin-top: 50px; text-align: center;">
+          Select a document from the left sidebar to inspect notes and exports.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="library.ts"></script>
+</body>
+</html>

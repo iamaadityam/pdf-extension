@@ -3,28 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <title>PDF Notes Side Panel</title>
-  <script type="module" crossorigin src="/assets/sidepanel.html-CPbQN9kp.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/styles-CP8UiGb0.js">
+  <style>body{flex-direction:column;height:100vh;display:flex;overflow:hidden}header{gap:8px;padding:10px 14px}.header-left{flex:1;align-items:center;gap:8px;min-width:0;display:flex}.doc-icon{flex-shrink:0;font-size:18px}#doc-title{white-space:nowrap;text-overflow:ellipsis;cursor:default;font-size:13.5px;font-weight:600;overflow:hidden}.header-actions{flex-shrink:0;align-items:center;gap:6px;display:flex}.panel-content{flex:1;padding:12px;overflow-y:auto}#new-note-drawer{background:var(--surface);border:1px solid var(--primary-border);border-radius:var(--radius);box-shadow:var(--shadow-md);margin-bottom:12px;padding:12px;animation:.2s slideDown;display:none}#new-note-drawer.open{display:block}@keyframes slideDown{0%{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}.form-group{margin-bottom:8px}.form-label{color:var(--text-secondary);margin-bottom:3px;font-size:11px;font-weight:600;display:block}.form-row{gap:8px;display:flex}.form-row>*{flex:1}.drawer-actions{justify-content:flex-end;gap:6px;margin-top:10px;display:flex}.card-top{justify-content:space-between;align-items:center;margin-bottom:6px;display:flex}.card-meta{align-items:center;gap:6px;display:flex}.page-ref{color:var(--muted);background:#f1f5f9;border-radius:4px;padding:2px 6px;font-size:11px}.card-comment{color:var(--text);background:#fafafa;border-left:2px solid #cbd5e1;border-radius:0 4px 4px 0;margin:6px 0;padding:6px 8px;font-size:12px}.card-actions{border-top:1px dashed var(--border);justify-content:flex-end;align-items:center;gap:6px;margin-top:8px;padding-top:6px;display:flex}</style>
+  <script type="module" crossorigin src="/assets/sidepanel.html-DfCAx-2R.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/styles-DrGfBDvu.js">
   <link rel="modulepreload" crossorigin href="/assets/database-CceYqlYd.js">
-  <link rel="stylesheet" crossorigin href="/assets/styles-DP7o8Jx4.css">
+  <link rel="modulepreload" crossorigin href="/assets/url-lQQJDFvN.js">
+  <link rel="stylesheet" crossorigin href="/assets/styles-DiaLeLhT.css">
 </head>
 <body>
   <header>
-    <h1 id="doc-title">Current PDF Notes</h1>
-    <button id="open-library-btn" class="btn">Library ↗</button>
+    <div class="header-left">
+      <span class="doc-icon">📄</span>
+      <h1 id="doc-title" title="Current PDF Document">Current PDF Notes</h1>
+    </div>
+    <div class="header-actions">
+      <button id="btn-toggle-add" class="btn btn-primary btn-sm" title="Add a custom note">
+        <span>+</span> Note
+      </button>
+      <button id="open-library-btn" class="btn btn-sm" title="Open full notes library">
+        Library ↗
+      </button>
+    </div>
   </header>
 
-  <main style="padding: 12px;">
-    <div id="search-bar" style="margin-bottom: 12px;">
-      <input type="text" id="search-input" placeholder="Search notes in this document...">
-    </div>
-
-    <div id="notes-container">
-      <div style="color: var(--muted); text-align: center; margin-top: 24px;">
-        No notes captured for this tab yet. Highlight text on a PDF and right-click to save.
+  <div class="panel-content">
+    <!-- Collapsible Add Note Form -->
+    <div id="new-note-drawer">
+      <div style="font-weight: 600; font-size: 12.5px; margin-bottom: 8px;">✏️ Create New Note</div>
+      <div class="form-group">
+        <label class="form-label">Note or Quote Text *</label>
+        <textarea id="drawer-text" placeholder="Type or paste text from the PDF..." rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select id="drawer-label">
+            <option value="key_idea">💡 Key Idea</option>
+            <option value="definition">📖 Definition</option>
+            <option value="question">❓ Question</option>
+            <option value="quote">💬 Quote</option>
+            <option value="other">📝 Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Page Number</label>
+          <input type="text" id="drawer-page" placeholder="e.g. 15 or p. 4">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Comment or Remarks</label>
+        <textarea id="drawer-comment" placeholder="Personal observations, questions, or summary..." rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tags (comma separated)</label>
+        <input type="text" id="drawer-tags" placeholder="e.g. exam, chapter2">
+      </div>
+      <div class="drawer-actions">
+        <button id="drawer-cancel-btn" class="btn btn-sm">Cancel</button>
+        <button id="drawer-save-btn" class="btn btn-primary btn-sm">Save Note</button>
       </div>
     </div>
-  </main>
+
+    <!-- Search Bar -->
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="search-input" placeholder="🔍 Search notes or tags in this PDF...">
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="filter-bar" id="category-filters">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="key_idea">💡 Key Ideas</button>
+      <button class="filter-pill" data-filter="definition">📖 Definitions</button>
+      <button class="filter-pill" data-filter="question">❓ Questions</button>
+      <button class="filter-pill" data-filter="quote">💬 Quotes</button>
+      <button class="filter-pill" data-filter="other">📝 Other</button>
+    </div>
+
+    <!-- Notes Container -->
+    <div id="notes-container"></div>
+  </div>
+
+  <div id="toast" class="toast">Note copied to clipboard!</div>
 
 </body>
 </html>

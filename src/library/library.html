@@ -3,38 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>PDF Notes - Central Library</title>
-  <style>.layout{height:calc(100vh - 49px);display:flex}.sidebar{border-right:1px solid var(--border);background:var(--surface);width:320px;overflow-y:auto}.content{flex:1;padding:20px;overflow-y:auto}.doc-item{border-bottom:1px solid var(--border);cursor:pointer;padding:12px}.doc-item:hover,.doc-item.active{background:#f0f9ff}</style>
-  <script type="module" crossorigin src="/assets/library.html-Dcuxb1SN.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/styles-CP8UiGb0.js">
+  <style>body{background:var(--bg);flex-direction:column;height:100vh;display:flex;overflow:hidden}header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px}.header-brand{align-items:center;gap:10px;display:flex}.header-stats{color:var(--muted);border-left:1px solid var(--border);margin-left:12px;padding-left:12px;font-size:12px}.layout{flex:1;display:flex;overflow:hidden}.sidebar{border-right:1px solid var(--border);background:var(--surface);flex-direction:column;flex-shrink:0;width:340px;display:flex}.sidebar-search{border-bottom:1px solid var(--border);padding:12px 14px}.sidebar-list{flex:1;overflow-y:auto}.doc-item{border-bottom:1px solid var(--border);cursor:pointer;align-items:center;gap:10px;padding:12px 14px;transition:background .15s;display:flex}.doc-item:hover{background:#f8fafc}.doc-item.active{border-left:3px solid var(--primary);background:#eff6ff}.doc-item-icon{flex-shrink:0;font-size:20px}.doc-item-info{flex:1;min-width:0}.doc-item-name{color:var(--text);white-space:nowrap;text-overflow:ellipsis;font-size:13px;font-weight:600;overflow:hidden}.doc-item-meta{color:var(--muted);justify-content:space-between;margin-top:2px;font-size:11px;display:flex}.content{flex:1;padding:24px 32px;overflow-y:auto}.export-toolbar{border:1px solid var(--border);border-radius:var(--radius);background:#f8fafc;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0 20px;padding:10px 14px;display:flex}.export-label{color:var(--text-secondary);margin-right:4px;font-size:12px;font-weight:600}</style>
+  <script type="module" crossorigin src="/assets/library.html-BS2jkp5B.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/styles-DrGfBDvu.js">
   <link rel="modulepreload" crossorigin href="/assets/database-CceYqlYd.js">
-  <link rel="stylesheet" crossorigin href="/assets/styles-DP7o8Jx4.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-DiaLeLhT.css">
 </head>
 <body>
   <header>
-    <h1>PDF Notes Library</h1>
-    <div>
-      <button id="btn-export-json" class="btn">Backup JSON</button>
-      <button id="btn-import-json" class="btn">Restore JSON</button>
+    <div class="header-brand">
+      <span style="font-size: 20px;">📚</span>
+      <h1>PDF Notes Library</h1>
+      <span class="header-stats" id="global-stats">Loading library...</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btn-export-json" class="btn btn-sm" title="Download a backup file of all notes">
+        💾 Backup All Notes
+      </button>
+      <button id="btn-import-json" class="btn btn-sm" title="Restore notes from a backup file">
+        📥 Restore Notes
+      </button>
       <input type="file" id="file-import" accept=".json" style="display: none;">
     </div>
   </header>
 
   <div class="layout">
     <div class="sidebar">
-      <div style="padding: 12px; border-bottom: 1px solid var(--border);">
-        <input type="text" id="doc-search" placeholder="Filter documents...">
+      <div class="sidebar-search">
+        <input type="text" id="doc-search" placeholder="🔍 Filter documents...">
       </div>
-      <div id="document-list"></div>
+      <div id="document-list" class="sidebar-list"></div>
     </div>
 
     <div class="content">
       <div id="main-view">
-        <div style="color: var(--muted); margin-top: 50px; text-align: center;">
-          Select a document from the left sidebar to inspect notes and exports.
+        <div class="empty-state" style="margin-top: 60px;">
+          <div class="empty-state-icon">📂</div>
+          <div class="empty-state-title">Select a Document</div>
+          <div class="empty-state-text">
+            Choose a PDF document from the left sidebar to view its notes, edit tags, and export to Word or Markdown.
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div id="toast" class="toast">Action completed!</div>
 
 </body>
 </html>

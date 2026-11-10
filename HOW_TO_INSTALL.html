@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Install & Use PDF Notes Extension</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .logo {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 8px 0;
+      color: var(--text);
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .step:last-child {
+      margin-bottom: 0;
+    }
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid #bfdbfe;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: #334155;
+      margin: 0 0 10px 0;
+    }
+    .copy-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #1e293b;
+    }
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: sans-serif;
+      font-weight: 500;
+    }
+    .copy-btn:hover {
+      background: var(--primary-hover);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 600px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+    .feature-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+    .feature-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .feature-text {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">📑</div>
+      <h1>PDF Notes Chrome Extension</h1>
+      <p class="subtitle">Quick Setup Guide — Ready in under 1 minute</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top: 0; font-size: 18px; margin-bottom: 20px;">🚀 3 Easy Steps to Install</h2>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-title">Open Chrome Extensions Page</div>
+          <p class="step-desc">Open a new tab in Google Chrome (or Brave) and navigate to the extensions page:</p>
+          <div class="copy-box">
+            <span id="ext-url">chrome://extensions</span>
+            <button class="copy-btn" id="copy-btn">Copy Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-title">Turn on "Developer mode"</div>
+          <p class="step-desc">In the top-right corner of the Extensions page, switch the toggle for <strong>Developer mode</strong> to <strong>ON</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-title">Click "Load unpacked" & Select Folder</div>
+          <p class="step-desc">Click the <strong>Load unpacked</strong> button in the top-left and select this extracted folder. That's all!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top: 0; font-size: 18px; margin-bottom: 16px;">💡 How to Use PDF Notes</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🖍️</div>
+          <div class="feature-title">1. Highlight & Right-Click</div>
+          <p class="feature-text">Select any sentence in any online or local PDF, right-click, and choose <strong>"Save to PDF Notes"</strong>.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">📖</div>
+          <div class="feature-title">2. Side Panel Companion</div>
+          <p class="feature-text">The side panel opens beside your PDF. Label notes as Key Ideas, Quotes, Definitions, or Questions with emojis.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">✏️</div>
+          <div class="feature-title">3. Add Custom Notes</div>
+          <p class="feature-text">Click the <strong>+ Note</strong> button in the side panel to jot down your own personal thoughts or reminders.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">📥</div>
+          <div class="feature-title">4. One-Click Export</div>
+          <p class="feature-text">Export all your notes into Microsoft Word (.doc), Markdown (.md) for Notion, or print-ready format with one click.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('copy-btn').addEventListener('click', function() {
+      navigator.clipboard.writeText('chrome://extensions').then(() => {
+        this.textContent = 'Copied! ✓';
+        setTimeout(() => { this.textContent = 'Copy Link'; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
